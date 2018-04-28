@@ -1,0 +1,17 @@
+//
+//  {{ ClassName }}Model.h
+//  DLModelTemplateTool
+//
+//  Created by Aaron on 2017/04/28.
+//  Copyright © 2017年 Aaron. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface {{ ClassName }}Model : NSObject
+
+{% for p in Params %}
+@property(nonatomic,strong){{p.propertyType}} *{{p.propertyName}};
+{% /for %}
+
+@end

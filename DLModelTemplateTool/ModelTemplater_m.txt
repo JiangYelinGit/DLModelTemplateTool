@@ -1,0 +1,14 @@
+//
+//  DL{{ ClassName }}Api.m
+//  DLModelTemplateTool
+//
+//  Created by Aaron on 2017/04/28.
+//  Copyright © 2017年 Aaron. All rights reserved.
+//
+
+#import "{{ ClassName }}Model.h"
+
+@implementation {{ ClassName }}Model {
+
+
+@end
