@@ -89,6 +89,12 @@
 @property (weak) IBOutlet NSPopUpButton *propertyTypePopUpButton17;
 @property (weak) IBOutlet NSTextField *propertyClassNameTextField17;
 
+
+
+@property(nonatomic,strong)NSArray *propertyNameTextFields;
+@property(nonatomic,strong)NSArray *propertyTypePopUpButtons;
+@property(nonatomic,strong)NSArray *propertyClassNameTextFields;
+
 @end
 
 @implementation ViewController
@@ -96,6 +102,59 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.propertyNameTextFields = @[self.propertyNameTextField1,
+                                    self.propertyNameTextField2,
+                                    self.propertyNameTextField3,
+                                    self.propertyNameTextField4,
+                                    self.propertyNameTextField5,
+                                    self.propertyNameTextField6,
+                                    self.propertyNameTextField7,
+                                    self.propertyNameTextField8,
+                                    self.propertyNameTextField9,
+                                    self.propertyNameTextField10,
+                                    self.propertyNameTextField11,
+                                    self.propertyNameTextField12,
+                                    self.propertyNameTextField13,
+                                    self.propertyNameTextField14,
+                                    self.propertyNameTextField15,
+                                    self.propertyNameTextField16,
+                                    self.propertyNameTextField17];
+    
+    self.propertyTypePopUpButtons = @[self.propertyTypePopUpButton1,
+                                      self.propertyTypePopUpButton2,
+                                      self.propertyTypePopUpButton3,
+                                      self.propertyTypePopUpButton4,
+                                      self.propertyTypePopUpButton5,
+                                      self.propertyTypePopUpButton6,
+                                      self.propertyTypePopUpButton7,
+                                      self.propertyTypePopUpButton8,
+                                      self.propertyTypePopUpButton9,
+                                      self.propertyTypePopUpButton10,
+                                      self.propertyTypePopUpButton11,
+                                      self.propertyTypePopUpButton12,
+                                      self.propertyTypePopUpButton13,
+                                      self.propertyTypePopUpButton14,
+                                      self.propertyTypePopUpButton15,
+                                      self.propertyTypePopUpButton16,
+                                      self.propertyTypePopUpButton17];
+    
+    self.propertyClassNameTextFields = @[self.propertyClassNameTextField1,
+                                         self.propertyClassNameTextField2,
+                                         self.propertyClassNameTextField3,
+                                         self.propertyClassNameTextField4,
+                                         self.propertyClassNameTextField5,
+                                         self.propertyClassNameTextField6,
+                                         self.propertyClassNameTextField7,
+                                         self.propertyClassNameTextField8,
+                                         self.propertyClassNameTextField9,
+                                         self.propertyClassNameTextField10,
+                                         self.propertyClassNameTextField11,
+                                         self.propertyClassNameTextField12,
+                                         self.propertyClassNameTextField13,
+                                         self.propertyClassNameTextField14,
+                                         self.propertyClassNameTextField15,
+                                         self.propertyClassNameTextField16,
+                                         self.propertyClassNameTextField17];
 }
 
 
@@ -116,22 +175,31 @@
     
     NSMutableArray *mArr = [NSMutableArray new];
     
-    if (![self.propertyNameTextField1.stringValue isEqualToString:@""]) {
-        NSDictionary *dic = @{@"propertyName":self.propertyNameTextField1.stringValue,
-                              @"propertyType":[self.propertyTypePopUpButton1 titleOfSelectedItem],
-                              @"propertyClassName":self.propertyClassNameTextField1.stringValue,
-                              };
-        [mArr addObject:dic];
+    for (int i = 0; i < 17; i++) {
+        NSTextField *properyNameTextField = self.propertyNameTextFields[i];
+        NSPopUpButton *propertyTypePopUpButton = self.propertyTypePopUpButtons[i];
+        NSTextField *propertyClassNameTextField = self.propertyClassNameTextFields[i];
+        
+        NSString *propertyNameStr = properyNameTextField.stringValue;
+        NSString *propertyTypeStr = [propertyTypePopUpButton titleOfSelectedItem];
+        NSString *propertyClassNameStr = propertyClassNameTextField.stringValue;
+        
+        if (![propertyNameStr isEqualToString:@""] &&
+            ![propertyTypeStr isEqualToString:@""] &&
+            ![propertyClassNameStr isEqualToString:@""]) {
+            
+            if ([propertyTypeStr isEqualToString:@"Class"]) {
+                propertyTypeStr = propertyClassNameTextField.stringValue;
+            }
+            
+            NSDictionary *dic = @{@"propertyName":propertyNameStr,
+                                  @"propertyType":propertyTypeStr,
+                                  @"propertyClassName":propertyClassNameStr,
+                                  };
+            [mArr addObject:dic];
+        }
     }
     
-    if (![self.propertyNameTextField2.stringValue isEqualToString:@""]) {
-        NSDictionary *dic = @{@"propertyName":self.propertyNameTextField2.stringValue,
-                              @"propertyType":[self.propertyTypePopUpButton2 titleOfSelectedItem],
-                              @"propertyClassName":self.propertyClassNameTextField2.stringValue,
-                              };
-        [mArr addObject:dic];
-    }
-
     NSDictionary *variables = @{@"ClassName":self.classNameTextFiled.stringValue,
                                 @"Params":mArr,
                                 };
