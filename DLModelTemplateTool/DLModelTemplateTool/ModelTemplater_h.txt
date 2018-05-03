@@ -1,0 +1,21 @@
+//
+//  DL{{ ClassName }}Model.h
+//
+//  Created by Aaron on 2017/04/28.
+//  Copyright © 2017年 Aaron. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface DL{{ ClassName }}Model : NSObject
+
+{% for p in Params %}
+/**
+{{p.propertyDes}}
+*/
+@property(nonatomic,{{p.propertyKeyword}}){{p.propertyClassName}} *{{p.propertyName}};
+{% /for %}
+
+
+
+@end

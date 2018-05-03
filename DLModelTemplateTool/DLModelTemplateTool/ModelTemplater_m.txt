@@ -1,0 +1,26 @@
+//
+//  DL{{ ClassName }}Api.m
+//
+//  Created by Aaron on 2017/04/28.
+//  Copyright © 2017年 Aaron. All rights reserved.
+//
+
+#import "DL{{ ClassName }}Model.h"
+
+@implementation DL{{ ClassName }}Model
+
++ (NSDictionary *)mj_objectClassInArray {
+    return @{{% for p in Params %}{% if p.propertyType equalsString p.compareStr %}
+                @"{{ p.propertyName }}": @"{{ p.propertyArrayContent }}",{% else %}{% /if %}{% /for %}
+            };
+}
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{{% for p in Params %}{% if p.propertyName equalsString p.compareStr %}
+                @"{{ p.propertyName }}": @"id"{% else %}{% /if %}{% /for %}
+            };
+}
+
+@end
+
+/*{% if Params.@lastObject.propertyName equalsString p.propertyName %}.{% else %}, {% /if %}*/
