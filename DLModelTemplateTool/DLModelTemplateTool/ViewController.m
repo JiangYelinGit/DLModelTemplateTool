@@ -238,7 +238,6 @@
                 }
 
                 
-                
                 NSDictionary *dic = @{@"propertyDes":propertyDesStr,//描述
                                       @"propertyKeyword":@"copy",//关键字
                                       @"propertyClassName":@"NSString",//类名
